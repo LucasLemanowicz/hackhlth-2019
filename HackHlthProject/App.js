@@ -12,20 +12,11 @@ import { DetailsScreen } from "./DetailsScreen";
 import { MyHealthScreen } from "./MyHealthScreen";
 import { SharingScreen } from "./SharingScreen";
 import { ResourcesScreen } from "./ResourcesScreen";
+import { TrendsScreen } from "./TrendsScreen";
 
 const store = createStore(combineReducers({
   home: homeReducer,
 }));
-
-class TrendsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>This is my Trends Screen</Text>
-      </View>
-    );
-  }
-}
 
 class RewardsScreen extends React.Component {
   render() {
