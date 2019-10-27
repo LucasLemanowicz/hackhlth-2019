@@ -26,9 +26,9 @@ class UnconnectedHomeScreen extends React.Component {
                     <View style={styles.welcomeWrapper}>
                         <Text style={styles.welcome}>Hello Betty!</Text>
                         <Text>{points} points</Text>
-                        <Image style={{ width: 100, height: 60 }} source={require('./rating.png')}/>
+                        <Image style={{ width: 100, height: 60 }} source={require('./rating.png')} />
                     </View>
-                    <Text style={styles.todayGoals}>Today's Goals</Text> 
+                    <Text style={styles.todayGoals}>Today's Goals</Text>
                     {actionKeys.map(key => isShown[key] && (
                         <CheckBox
                             key={key}
@@ -40,6 +40,16 @@ class UnconnectedHomeScreen extends React.Component {
                             }}
                         />
                     ))}
+                    <CheckBox
+                        key="schedule-blood-test"
+                        title="Schedule a new blood test with Dr. John"
+                        checked={true}
+                    />
+                    <CheckBox
+                        key="water-glass"
+                        title="Pour yourself a big glass of water and enjoy a healthy start to the day!"
+                        checked={true}
+                    />
                 </ScrollView>
             </SafeAreaView>
         );
