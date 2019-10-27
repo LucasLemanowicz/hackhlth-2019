@@ -15,9 +15,15 @@ class SharingScreen extends React.Component {
                         <Text style={{ ...styles.healthTitle, marginLeft: 60 }}>Privacy Controls</Text>
                     </View>
                     <View style={styles.healthScreen}>
-                        <Text>My Data Shared With:</Text>
-                        <CheckBox containerStyle={styles.normalizedCheckbox} title="Dr. John" />
-                        <CheckBox containerStyle={styles.normalizedCheckbox} title="Walmart Inc." />
+                        <Text>Share my data with</Text>
+                        <CheckBox containerStyle={styles.normalizedCheckbox} title="Dr. John" checked={true} />
+                        <CheckBox containerStyle={styles.indentedCheckbox} title="Basic Info (sex, gender, date of birth, height, weight, BMI)" checked={true} />
+                        <CheckBox containerStyle={styles.indentedCheckbox} title="Lifestyle and History (BP, average sleep, average steps, previous medical conditions)" checked={true} />
+                        <CheckBox containerStyle={styles.indentedCheckbox} title="SDHs (dependents, education, employer, zip code)" checked={true} />
+                        <CheckBox containerStyle={styles.normalizedCheckbox} title="Walmart Inc." checked={true} />
+                        <CheckBox containerStyle={styles.indentedCheckbox} title="Anonymized Basic Info" checked={true} />
+                        <CheckBox containerStyle={styles.indentedCheckbox} title="Anonymized Lifestyle and History" />
+                        <CheckBox containerStyle={styles.indentedCheckbox} title="Anonymized SDHs" />
                     </View>
                 </ScrollView>
             </SafeAreaView>

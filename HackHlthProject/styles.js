@@ -40,19 +40,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 40,
-        paddingVertical: 20
+        paddingBottom: 20
     },
     detailsMainText: {
-        fontSize: 20,
+        fontSize: 18,
         padding: 10,
         backgroundColor: "#FFC940",
     },
     miniHeader: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "600"
     },
     detailsSecondaryText: {
-        fontSize: 20,
+        fontSize: 18,
         padding: 10,
     },
     todayGoals: {
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     healthScreen: {
         paddingHorizontal: 40,
-        paddingVertical: 20
+        paddingBottom: 20
     },
     healthTitle: {
         fontSize: 32,
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
         paddingBottom: 5,
     },
     healthLabel: {
-        fontSize: 20,
+        fontSize: 18,
         paddingRight: 15,
         width: 140,
     },
     healthValue: {
         fontWeight: "600",
-        fontSize: 20,
+        fontSize: 18,
     },
     healthSource1: {
         color: "green",
@@ -107,6 +107,10 @@ const styles = StyleSheet.create({
     },
     normalizedCheckbox: {
         marginLeft: 0,
+        marginRight: 0
+    },
+    indentedCheckbox: {
+        marginLeft: 40,
         marginRight: 0
     },
     linkContainer: {
