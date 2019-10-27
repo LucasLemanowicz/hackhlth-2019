@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, Image, SafeAreaView, ScrollView } from 'react-native';
-import { Button, CheckBox } from 'react-native-elements';
+import { Button, CheckBox, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateHomeState } from './reducer';
@@ -52,19 +52,25 @@ class UnconnectedDetailsScreen extends React.Component {
                         <Text style={styles.miniHeader}>Did You Know?</Text>
                         <Text style={styles.detailsSecondaryText}>{tertiaryTexts[selectedAction]}</Text>
                         <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <Button title="Done!" onPress={() => {
+                            <Button title="Done!" 
+                            buttonStyle={{ width: 140, marginRight: 10 }}
+                            icon={<Icon name="check" />}
+                            onPress={() => {
                                 updateHomeState({
                                     points: points + actionPoints[selectedAction],
                                     isChecked: { ...isChecked, [selectedAction]: true },
                                 });
                                 this.props.navigation.navigate('HomeScreen');
                             }} />
-                            <Button title="Cannot Do" onPress={() => {
+                            <Button title="Cannot Do" 
+                            buttonStyle={{ width: 140, backgroundColor: "#DB3737" }}
+                            icon={<Icon name="delete" />}
+                            onPress={() => {
                                 this.setState({ isCannotDo: true });
                             }} />
                         </View>
                         {this.state.isCannotDo && (
-                            <View>
+                            <View style={{ paddingHorizontal: 0, marginHorizontal: 0 }}>
                                 <Text style={styles.detailsSecondaryText}>Why?</Text>
                                 <CheckBox style={styles.normalizedCheckbox} title="Physical pain" checked={isReasonOne}
                                     onPress={() => { this.setState({ isReasonOne: !isReasonOne }) }} />
