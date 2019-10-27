@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { Text, View } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -90,7 +91,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <AppContainer />
+        <ThemeProvider>
+          <AppContainer />
+        </ThemeProvider>
       </Provider>
     );
   }
