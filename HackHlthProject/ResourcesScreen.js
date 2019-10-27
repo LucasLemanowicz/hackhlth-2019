@@ -49,8 +49,9 @@ class ResourcesScreen extends React.Component {
                     {links.map((item) => {
                         return (
                             <>
-                                <View style={styles.separator} />
+                                <View key={item.title }style={styles.separator} />
                                 <TouchableOpacity
+                                    key={item.title}
                                     accessibilityRole={'button'}
                                     onPress={() => Linking.openURL(item.link)}
                                     style={styles.linkContainer}>
