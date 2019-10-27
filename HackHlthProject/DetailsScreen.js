@@ -62,7 +62,7 @@ class UnconnectedDetailsScreen extends React.Component {
                                 });
                                 this.props.navigation.navigate('HomeScreen');
                             }} />
-                            <Button title="Cannot Do" 
+                            <Button title="Can't Do" 
                             buttonStyle={{ width: 140, backgroundColor: "#DB3737" }}
                             icon={<Icon name="delete" />}
                             onPress={() => {
@@ -71,7 +71,7 @@ class UnconnectedDetailsScreen extends React.Component {
                         </View>
                         {this.state.isCannotDo && (
                             <View style={{ paddingHorizontal: 0, marginHorizontal: 0 }}>
-                                <Text style={styles.detailsSecondaryText}>Why?</Text>
+                                <Text style={{ ...styles.miniHeader, paddingVertical: 10 }}>Why?</Text>
                                 <CheckBox style={styles.normalizedCheckbox} title="Physical pain" checked={isReasonOne}
                                     onPress={() => { this.setState({ isReasonOne: !isReasonOne }) }} />
                                 <CheckBox style={styles.normalizedCheckbox} title="Not enough time" checked={isReasonTwo}

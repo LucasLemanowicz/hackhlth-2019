@@ -49,7 +49,14 @@ const styles = StyleSheet.create({
     },
     miniHeader: {
         fontSize: 18,
-        fontWeight: "600"
+        fontWeight: "600",
+        alignSelf: "center"
+    },
+    healthSectionHeader: {
+        fontSize: 18,
+        paddingTop: 10,
+        paddingBottom: 10,
+        alignSelf: "center"
     },
     detailsSecondaryText: {
         fontSize: 18,
@@ -80,30 +87,16 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         paddingTop: 5,
+        paddingBottom: 2,
     },
     healthLabel: {
         fontSize: 18,
         paddingRight: 15,
-        width: 140,
+        width: 150,
     },
     healthValue: {
         fontWeight: "600",
         fontSize: 18,
-    },
-    healthSource1: {
-        color: "green",
-        paddingLeft: 5,
-        lineHeight: 26
-    },
-    healthSource2: {
-        color: "blue",
-        paddingLeft: 5,
-        lineHeight: 26
-    },
-    healthSource3: {
-        color: "red",
-        paddingLeft: 5,
-        lineHeight: 26
     },
     normalizedCheckbox: {
         marginLeft: 0,
@@ -127,7 +120,7 @@ const styles = StyleSheet.create({
         color: "blue",
     },
     separator: {
-        backgroundColor: "gray",
+        backgroundColor: "#BFCCD6",
         height: 1,
     },
 });
