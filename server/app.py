@@ -33,6 +33,9 @@ class SdhApi:
     def warmup(self):
         self._get_obesity_data()
 
+    def reset(self):
+        self.obesity_data = None
+
     def obesity_by_county(self, county):
         if not self.obesity_data:
             self._get_obesity_data()
@@ -47,7 +50,7 @@ class SdhApi:
 
     def _get_obesity_data(self):
         http = requests.get(self.OBESITY_DATA_SOURCE)
-        soup = BeautifulSoup(http.content)
+        soup = BeautifulSoup(http.content, "lxml")
         table_data = [[cell.text for cell in row(["th", "td"])]
                          for row in soup("tr")]
         table_header = table_data[0]
