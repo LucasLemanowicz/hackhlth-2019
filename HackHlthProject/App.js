@@ -6,97 +6,90 @@
  * @flow
  */
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React, { useCallback, useState } from 'react';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { Button, CheckBox, Icon } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { styles } from "./styles";
 
 export default class App extends React.Component {
   render() {
     return (
-        <AppContainer />
+      <AppContainer />
     );
   }
 }
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <SafeAreaView style={styles.safeAreaViewContainer}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Text>Welcome Back!</Text>
+function HomeScreen() {
+  const [points, setPoints] = useState(10000);
+  const onComplete = useCallback(() => { setPoints(points + 5); }, [points]);
+
+  return (
+    <SafeAreaView style={styles.safeAreaViewContainer}>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}>
+        <Text style={{ fontSize: 25 }}>Welcome Back!</Text>
+        <Text>{points} points</Text>
+        <View style={{ flex: 1 }} >
           <CheckBox
-            title='Click Here'
+            title='+5 Click Here'
             checked={true}
+            onPress={onComplete}
           />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-            
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-          <CheckBox
-            title='Click Here'
-            checked={true}
-          />
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
+          <Button icon={<Icon name="delete" />} />
+        </View>
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+        <CheckBox
+          title='Click Here'
+          checked={true}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 class SettingsScreen extends React.Component {
   render() {
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text> This is my Settings screen </Text>
       </View>
     );
@@ -105,8 +98,8 @@ class SettingsScreen extends React.Component {
 
 class ShareScreen extends React.Component {
   render() {
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text> This is my Share screen </Text>
       </View>
     );
@@ -115,8 +108,8 @@ class ShareScreen extends React.Component {
 
 class RewardsScreen extends React.Component {
   render() {
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text> This is my Rewards screen </Text>
       </View>
     );
@@ -131,46 +124,4 @@ const TabNavigator = createBottomTabNavigator({
 });
 
 const AppContainer = createAppContainer(TabNavigator);
-
-const styles = StyleSheet.create({
-  safeAreaViewContainer: {
-    flex: 1,
-  },
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
