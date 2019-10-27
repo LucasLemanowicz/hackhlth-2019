@@ -30,8 +30,10 @@ function HomeScreen() {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
-        <Text style={{ fontSize: 25 }}>Welcome Back!</Text>
+        <View style={styles.welcomeWrapper}>
+        <Text style={styles.welcome}>Welcome Back Betty!</Text>
         <Text>{points} points</Text>
+        </View>
         <View style={{ flex: 1 }} >
           <CheckBox
             title='+5 Click Here'

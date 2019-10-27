@@ -5,6 +5,16 @@ const styles = StyleSheet.create({
     safeAreaViewContainer: {
         flex: 1,
     },
+    welcomeWrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 20,
+        paddingBottom: 20,
+    },
+    welcome: {
+        fontSize: 32,
+    },
     scrollView: {
         backgroundColor: Colors.lighter,
     },
