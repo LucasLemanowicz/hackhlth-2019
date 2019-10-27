@@ -24,7 +24,7 @@ class RewardsScreen extends React.Component {
     return (
       <SafeAreaView style={styles.safeAreaViewContainer}>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-          <Image style={{ width: 250, height: 250 }} source={require('./images/nudge-clear.png')} />
+          <Image style={{ width: 270, height: 270 }} source={require('./images/nudge-welcome.png')} />
         </View>
       </SafeAreaView>
 
