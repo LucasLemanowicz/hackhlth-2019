@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     scrollView: {
-        backgroundColor: Colors.lighter,
+        backgroundColor: 'white',
     },
     detailsScreen: {
         flex: 1,
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
         fontWeight: "600"
     },
     healthScreen: {
-        padding: 40,
+        paddingHorizontal: 40,
+        paddingVertical: 20
     },
     healthTitle: {
         fontSize: 32,
@@ -83,7 +84,24 @@ const styles = StyleSheet.create({
     normalizedCheckbox: {
         marginLeft: 0,
         marginRight: 0
-    }
+    },
+    linkContainer: {
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 8,
+    },
+    link: {
+        flex: 2,
+        fontSize: 18,
+        fontWeight: '400',
+        color: "blue",
+    },
+    separator: {
+        backgroundColor: "gray",
+        height: 1,
+    },
 });
 
 export { styles };
