@@ -274,9 +274,11 @@ class SdhApi:
         return [dict(x) for x in list(map(list, [zip(table_header, content) for content in table_content]))]
 
 
+# fhir_api = FhirApi('https://r4.test.pyrohealth.net/fhir')
 fhir_api = FhirApi('http://test.fhir.org/r4')
 sdh_api = SdhApi()
 medicare_api = MedicareApi()
+dicareApi()
 
 
 @app.route('/')
