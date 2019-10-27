@@ -46,7 +46,7 @@ class MyHealthScreen extends React.Component {
                         <View style={styles.separator} />
                         <View style={styles.healthRow}>
                             <Text style={styles.healthLabel}>Zipcode</Text>
-                            <Text style={styles.healthValue}>12345</Text>
+                            <Text style={styles.healthValue}>89108</Text>
                         </View>
                         <View style={styles.separator} />
                         <View style={styles.healthRow}>

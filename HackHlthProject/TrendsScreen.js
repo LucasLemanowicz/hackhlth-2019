@@ -4,10 +4,10 @@ import { LineChart, BarChart } from 'react-native-chart-kit';
 import { styles } from "./styles";
 
 const stepsData = {
-    labels: [ 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+    labels: ['Oct 1','3', '5', '7',  '9', '11', '13', '15', '17' ],
     datasets: [
         {
-            data: [2000, 4500, 2800, 1800, 9901, 4300],
+            data: [3000, 4503, 2319, 3434, 4521, 4010, 3981, 3286, 2919, 3210, 3693, 4672, 4981, 5102, 5310, 5542, 5729],
             strokeWidth: 2, // optional
         },
     ],
@@ -28,7 +28,7 @@ const barData = {
     labels: [ 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
     datasets: [
         {
-            data: [0, 3, 0, 2, 1],
+            data: [0, 3, 3, 2, 1],
             strokeWidth: 2, // optional
         },
     ],
@@ -50,7 +50,7 @@ class TrendsScreen extends React.Component {
                         </Text>
                         <LineChart
                             data={stepsData}
-                            width={330}
+                            width={280}
                             height={240}
                             chartConfig={{
                                 backgroundColor: '#e26a00',
@@ -89,7 +89,7 @@ class TrendsScreen extends React.Component {
                             }}
                         />
                         <Text style={styles.chartHeader}>
-                            Medical Visits
+                            Medical Visit Claims
                         </Text>
                         <BarChart
                             data={barData}
