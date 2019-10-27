@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React from 'react';
 import { Text, View } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
@@ -17,6 +9,8 @@ import { combineReducers, createStore } from 'redux';
 import { HomeScreen } from "./HomeScreen";
 import { homeReducer } from './reducer';
 import { DetailsScreen } from "./DetailsScreen";
+import { MyHealthScreen } from "./MyHealthScreen";
+import { SharingScreen } from "./SharingScreen";
 
 const store = createStore(combineReducers({
   home: homeReducer,
@@ -27,16 +21,6 @@ class TrendsScreen extends React.Component {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>This is my Trends Screen</Text>
-      </View>
-    );
-  }
-}
-
-class MyHealthScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>This is My Health Screen</Text>
       </View>
     );
   }
@@ -62,28 +46,19 @@ class RewardsScreen extends React.Component {
   }
 }
 
-class SharingScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>This is my Sharing Screen</Text>
-      </View>
-    );
-  }
-}
-
 const HomeStack = createStackNavigator({
   HomeScreen: HomeScreen,
   Details: DetailsScreen,
 });
 
 const TabNavigator = createBottomTabNavigator({
+  Sharing: SharingScreen,
   Home: HomeStack,
   Trends: TrendsScreen,
   "My Health": MyHealthScreen,
   Resources: ResourcesScreen,
   Rewards: RewardsScreen,
-  Sharing: SharingScreen,
+  
 });
 
 const AppContainer = createAppContainer(TabNavigator);
@@ -92,7 +67,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <ThemeProvider>
-          <AppContainer />
+            <AppContainer />
         </ThemeProvider>
       </Provider>
     );
