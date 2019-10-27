@@ -4,6 +4,7 @@ import requests
 
 from bs4 import BeautifulSoup
 from clientpy4.fhirclient import client
+from clientpy4.fhirclient.models import observation as obs
 from clientpy4.fhirclient.models import patient as p
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -13,16 +14,71 @@ CORS(app)
 
 
 class FhirApi:
-    def __init__(self, api_base='http://test.fhir.org/r4'):
+    loinc_codes = {
+        # Fasting Blood Sugar
+        '15074-8': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectivePeriod'),
+            'value': l.get('valueQuantity')},
+        # Body Weight / BMI
+        '3141-9': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'value': l.get('valueQuantity')},
+        # Blood Pressure
+        '85354-9': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'value': [
+                l.get('component', [{},{}])[0].get('valueQuantity', {}),
+                l.get('component', [{},{}])[1].get('valueQuantity', {}),
+            ]},
+        # HDL
+        '2085-9': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'value': l.get('valueQuantity')},
+        # Height
+        '8302-2': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'value': l.get('valueQuantity')},
+        # BMI
+        '39156-5': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'value': l.get('valueQuantity')},
+        # A1C
+        '4548-4': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'value': l.get('valueQuantity')},
+        'default': lambda l: l,
+    }
+
+    def __init__(self, api_base):
         self.smart = client.FHIRClient(settings={
             'app_id': 'hackhlth2019',
             'api_base': api_base,
         })
 
+    def get_patient(self, patient_id):
+        search = p.Patient.read(patient_id, self.smart.server)
+        return search.as_json()
+
+    def get_observation(self, loinc):
+        search = obs.Observation.where({ "code": loinc })
+        results = search.perform_resources(self.smart.server)
+        raw_data = [item.as_json() for item in results]
+        return [self.loinc_codes.get(loinc, self.loinc_codes['default'])(i) for i in raw_data]
+
+
+
+
     def patients(self):
         search = p.Patient.where(struct={})
-        patients = search.perform_resources(self.smart.server)
-        return [patient.as_json() for patient in patients]
+        patients_results = search.perform_resources(self.smart.server)
+        return [patient.as_json() for patient in patients_results]
 
 class SdhApi:
     FOODSTAMP_DATA_SOURCE= "https://nccd.cdc.gov/DHDSPAtlas/SocialDeterminantThematicDataHandler.ashx?{%22ThemeId%22:41,%22GeographyType%22:%22county%22,%22ParentGeographyFilter%22:%22%22,%22ThemeFilterOptions%22:[]}"
@@ -133,7 +189,7 @@ class SdhApi:
         return [dict(x) for x in list(map(list, [zip(table_header, content) for content in table_content]))]
 
 
-fhir_api = FhirApi()
+fhir_api = FhirApi('http://test.fhir.org/r4')
 sdh_api = SdhApi()
 
 
@@ -144,8 +200,16 @@ def hello_world():
 
 # API Endpoints
 @app.route('/fhir/patients')
-def patient():
+def patients():
     return jsonify(fhir_api.patients())
+
+@app.route('/fhir/patient/<patient_id>')
+def patient(patient_id):
+    return jsonify(fhir_api.get_patient(patient_id))
+
+@app.route('/fhir/observation/<loinc>')
+def observation(loinc):
+    return jsonify(fhir_api.get_observation(loinc))
 
 @app.route('/sdh/county/<county>')
 def sdh_county(county):
