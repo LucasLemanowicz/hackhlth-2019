@@ -38,12 +38,20 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20
+        paddingHorizontal: 40,
+        paddingVertical: 20
+    },
+    detailsTitle: {
+        fontSize: 32,
     },
     detailsMainText: {
-        fontSize: 24,
+        fontSize: 20,
         padding: 10,
-        backgroundColor: "#FFC940"
+        backgroundColor: "#FFC940",
+    },
+    miniHeader: {
+        fontSize: 20,
+        fontWeight: "600"
     },
     detailsSecondaryText: {
         fontSize: 20,

@@ -6,14 +6,9 @@ import { bindActionCreators } from 'redux';
 import { updateHomeState } from './reducer';
 import { styles } from "./styles";
 import { actionPoints } from "./points";
+import { actionTexts } from "./actionTexts";
 
 const actionKeys = ["walking", "parking", "lunch", "sleep"];
-const actionTexts = {
-    "walking": "30 min walk",
-    "lunch": "Eat a healthy lunch",
-    "sleep": "Get an extra hour of sleep tonight",
-    "parking": "Park car two blocks from work",
-};
 
 class UnconnectedHomeScreen extends React.Component {
     render() {
