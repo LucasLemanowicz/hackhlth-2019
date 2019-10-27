@@ -49,29 +49,31 @@ class UnconnectedDetailsScreen extends React.Component {
                     <View style={styles.detailsScreen}>
                         <Text style={styles.detailsMainText}>{mainTexts[selectedAction]}</Text>
                         <Text style={styles.detailsSecondaryText}>{secondaryTexts[selectedAction]}</Text>
-                        <Text style={styles.miniHeader}>Did You Know?</Text>
+                        {selectedAction === "walking" && <Image style={{ width: 330, height: 300 }} source={require('./images/walk.png')} />}
+                        {selectedAction === "parking" && <Image style={{ width: 330, height: 300 }} source={require('./images/parking.png')} />}
+                        <Text style={{ ...styles.miniHeader, paddingTop: 10 }}>Did You Know?</Text>
                         <Text style={styles.detailsSecondaryText}>{tertiaryTexts[selectedAction]}</Text>
                         <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <Button title="Done!" 
-                            buttonStyle={{ width: 140, marginRight: 10 }}
-                            icon={<Icon name="check" />}
-                            onPress={() => {
-                                updateHomeState({
-                                    points: points + actionPoints[selectedAction],
-                                    isChecked: { ...isChecked, [selectedAction]: true },
-                                });
-                                this.props.navigation.navigate('HomeScreen');
-                            }} />
-                            <Button title="Cannot Do" 
-                            buttonStyle={{ width: 140, backgroundColor: "#DB3737" }}
-                            icon={<Icon name="delete" />}
-                            onPress={() => {
-                                this.setState({ isCannotDo: true });
-                            }} />
+                            <Button title="Done!"
+                                buttonStyle={{ width: 140, marginRight: 10 }}
+                                icon={<Icon name="check" />}
+                                onPress={() => {
+                                    updateHomeState({
+                                        points: points + actionPoints[selectedAction],
+                                        isChecked: { ...isChecked, [selectedAction]: true },
+                                    });
+                                    this.props.navigation.navigate('HomeScreen');
+                                }} />
+                            <Button title="Can't Do"
+                                buttonStyle={{ width: 140, backgroundColor: "#DB3737" }}
+                                icon={<Icon name="delete" />}
+                                onPress={() => {
+                                    this.setState({ isCannotDo: true });
+                                }} />
                         </View>
                         {this.state.isCannotDo && (
                             <View style={{ paddingHorizontal: 0, marginHorizontal: 0 }}>
-                                <Text style={styles.detailsSecondaryText}>Why?</Text>
+                                <Text style={{ ...styles.miniHeader, paddingVertical: 10 }}>Why?</Text>
                                 <CheckBox style={styles.normalizedCheckbox} title="Physical pain" checked={isReasonOne}
                                     onPress={() => { this.setState({ isReasonOne: !isReasonOne }) }} />
                                 <CheckBox style={styles.normalizedCheckbox} title="Not enough time" checked={isReasonTwo}
