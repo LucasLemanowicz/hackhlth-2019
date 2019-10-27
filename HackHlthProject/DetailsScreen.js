@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, Image, SafeAreaView, ScrollView } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -42,8 +42,11 @@ class UnconnectedDetailsScreen extends React.Component {
                 <ScrollView
                     contentInsetAdjustmentBehavior="automatic"
                     style={styles.scrollView}>
+                    <View style={styles.iconWrapper}>
+                        <Image style={{ width: 45, height: 45 }} source={require('./images/nudge-clear.png')} />
+                        <Text style={{ ...styles.healthTitle, marginLeft: 10, width: 380 }}>{actionTexts[selectedAction]}</Text>
+                    </View>
                     <View style={styles.detailsScreen}>
-                        <Text style={styles.detailsTitle}>{actionTexts[selectedAction]}</Text>
                         <Text style={styles.detailsMainText}>{mainTexts[selectedAction]}</Text>
                         <Text style={styles.detailsSecondaryText}>{secondaryTexts[selectedAction]}</Text>
                         <Text style={styles.miniHeader}>Did You Know?</Text>

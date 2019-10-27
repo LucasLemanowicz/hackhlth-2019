@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, View, Image } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { styles } from "./styles";
 
@@ -19,8 +19,11 @@ class TrendsScreen extends React.Component {
                 <ScrollView
                     contentInsetAdjustmentBehavior="automatic"
                     style={styles.scrollView}>
+                        <View style={styles.iconWrapper}>
+                    <Image style={{ width: 45, height: 45 }} source={require('./images/nudge-clear.png')} />
+                    <Text style={{...styles.healthTitle, marginLeft: 110 }}>Trends</Text>
+                </View>
                     <View style={styles.healthScreen}>
-                        <Text style={styles.healthTitle}>Trends</Text>
                         <Text>
                             Bezier Line Chart
                         </Text>

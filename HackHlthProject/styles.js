@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 10,
         marginLeft: 5,
+        flexDirection: "row",
     },
     welcomeWrapper: {
         flex: 1,
@@ -41,9 +42,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 40,
         paddingVertical: 20
     },
-    detailsTitle: {
-        fontSize: 32,
-    },
     detailsMainText: {
         fontSize: 20,
         padding: 10,
@@ -75,7 +73,8 @@ const styles = StyleSheet.create({
     healthTitle: {
         fontSize: 32,
         paddingBottom: 10,
-        alignSelf: "center",
+        marginTop: 6,
+        marginLeft: 80,
     },
     healthRow: {
         flex: 1,
