@@ -52,6 +52,12 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         alignSelf: "center"
     },
+    chartHeader: {
+        fontSize: 18,
+        fontWeight: "600",
+        alignSelf: "center",
+        paddingVertical: 5
+    },
     healthSectionHeader: {
         fontSize: 18,
         paddingTop: 10,

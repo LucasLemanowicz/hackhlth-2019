@@ -3,11 +3,11 @@ import { SafeAreaView, ScrollView, Text, View, Image } from 'react-native';
 import { LineChart, BarChart } from 'react-native-chart-kit';
 import { styles } from "./styles";
 
-const linedata = {
+const stepsData = {
     labels: ['05', '06', '07', '08', '09', '10'],
     datasets: [
         {
-            data: [20, 45, 28, 80, 99, 43],
+            data: [2000, 4500, 2800, 1800, 9901, 4300],
             strokeWidth: 2, // optional
         },
     ],
@@ -45,19 +45,18 @@ class TrendsScreen extends React.Component {
                         <Text style={{ ...styles.healthTitle, marginLeft: 110 }}>Trends</Text>
                     </View>
                     <View style={styles.healthScreen}>
-                        <Text style={styles.miniHeader}>
+                        <Text style={styles.chartHeader}>
                             Steps
                         </Text>
                         <LineChart
-                            data={linedata}
-                            width={320}
+                            data={stepsData}
+                            width={330}
                             height={240}
-                            yAxisLabel={'$'}
                             chartConfig={{
                                 backgroundColor: '#e26a00',
                                 backgroundGradientFrom: '#fb8c00',
                                 backgroundGradientTo: '#ffa726',
-                                decimalPlaces: 2, 
+                                decimalPlaces: 0, 
                                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                 style: {
                                     borderRadius: 16
@@ -68,7 +67,7 @@ class TrendsScreen extends React.Component {
                                 borderRadius: 16
                             }}
                         />
-                        <Text style={styles.miniHeader}>
+                        <Text style={styles.chartHeader}>
                             BMI
                         </Text>
                         <BarChart
@@ -77,6 +76,8 @@ class TrendsScreen extends React.Component {
                             height={240}
                             chartConfig={{
                                 backgroundColor: '#137CBD',
+                                backgroundGradientFrom: '#0E5A8A',
+                                backgroundGradientTo: '#48AFF0',
                                 decimalPlaces: 0,
                                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                 style: {
@@ -87,7 +88,7 @@ class TrendsScreen extends React.Component {
                                 borderRadius: 16
                             }}
                         />
-                        <Text style={styles.miniHeader}>
+                        <Text style={styles.chartHeader}>
                             Medical Visits
                         </Text>
                         <BarChart
@@ -95,7 +96,9 @@ class TrendsScreen extends React.Component {
                             width={330}
                             height={240}
                             chartConfig={{
-                                // backgroundColor: '#e26a00',
+                                backgroundColor: '#0F9960',
+                                backgroundGradientFrom: '#0A6640',
+                                backgroundGradientTo: '#3DCC91',
                                 decimalPlaces: 0, 
                                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                 style: {
