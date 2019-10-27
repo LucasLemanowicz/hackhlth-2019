@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, View, Image } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -26,6 +26,7 @@ class UnconnectedHomeScreen extends React.Component {
                     <View style={styles.welcomeWrapper}>
                         <Text style={styles.welcome}>Hello Betty!</Text>
                         <Text>{points} points</Text>
+                        <Image style={{ width: 100, height: 60 }} source={require('./rating.png')}/>
                     </View>
                     <Text style={styles.todayGoals}>Today's Goals</Text> 
                     {actionKeys.map(key => isShown[key] && (

@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    points: 10000,
+    points: 9998,
     isChecked: { "biking": false, "lunch": false, "sleep": false, "swimming": false },
     isShown: { "biking": true, "lunch": true, "sleep": true, "swimming": false },
     selectedAction: ""
