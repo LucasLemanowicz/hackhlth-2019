@@ -2,6 +2,32 @@ import React from 'react';
 import { SafeAreaView, ScrollView, Text, View, Image } from 'react-native';
 import { LineChart, BarChart } from 'react-native-chart-kit';
 import { styles } from "./styles";
+// import AppleHealthKit from 'rn-apple-healthkit';
+
+// let options = {
+//     permissions: {
+//         read: ["Height", "Weight", "StepCount", "DateOfBirth", "BodyMassIndex", "ActiveEnergyBurned"],
+//         write: ["Height", "Weight", "StepCount", "BodyMassIndex", "Biotin", "Caffeine", "Calcium", "Carbohydrates", "Chloride", "Cholesterol", "Copper", "EnergyConsumed", "FatMonounsaturated", "FatPolyunsaturated", "FatSaturated", "FatTotal", "Fiber", "Folate", "Iodine", "Iron", "Magnesium", "Manganese", "Molybdenum", "Niacin", "PantothenicAcid", "Phosphorus", "Potassium", "Protein", "Riboflavin", "Selenium", "Sodium", "Sugar", "Thiamin", "VitaminA", "VitaminB12", "VitaminB6", "VitaminC", "VitaminD", "VitaminE", "VitaminK", "Zinc", "Water"]
+//     }
+// };
+
+// let stepsData = []
+// AppleHealthKit.initHealthKit(options, (err, results) => {
+//     if (err) {
+//         console.log("error initializing Healthkit: ", err);
+//         return;
+//     }
+
+//     AppleHealthKit.getStepCount({
+//         date: new Date(2019, 10, 27).toISOString()
+//     }, (err, results) => {
+//         if (this._handleHealthkitError(err, 'getStepCount')) {
+//             return;
+//         }
+//         stepsData = results;
+//     });
+// });
+
 
 const stepsData = {
     labels: ['Oct 1','3', '5', '7',  '9', '11', '13', '15', '17' ],
