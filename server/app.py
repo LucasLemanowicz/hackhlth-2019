@@ -53,12 +53,12 @@ class SdhApi:
         table_header = table_data[0]
         table_content = table_data[1:]
         dict_data = [dict(x) for x in list(map(list, [zip(table_header, content) for content in table_content]))]
-
-        for d in dict_data:
-            del d['']
-            del d['Category Range']
-
-        self.obesity_data = dict_data
+        clean_set = [{
+            'State': d['State'],
+            'County': d['County'],
+            'Obesity': d['Value'],
+        } for d in dict_data]
+        self.obesity_data = clean_set
 
 
 fhir_api = FhirApi()
