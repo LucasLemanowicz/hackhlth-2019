@@ -31,58 +31,51 @@ function HomeScreen() {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}>
         <View style={styles.welcomeWrapper}>
-        <Text style={styles.welcome}>Welcome Back Betty!</Text>
-        <Text>{points} points</Text>
+          <Text style={styles.welcome}>Welcome Back Betty!</Text>
+          <Text>{points} points</Text>
         </View>
-        <View style={{ flex: 1 }} >
+        <View style={styles.dailyActionRow} >
           <CheckBox
+            containerStyle={{ flexGrow: 1, marginRight: 0 }}
             title='+5 Click Here'
             checked={true}
             onPress={onComplete}
           />
-          <Button icon={<Icon name="delete" />} />
+          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
         </View>
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
-        <CheckBox
-          title='Click Here'
-          checked={true}
-        />
+        <View style={styles.dailyActionRow} >
+          <CheckBox
+            containerStyle={{ flexGrow: 1, marginRight: 0 }}
+            title='+5 Click Here'
+            checked={true}
+            onPress={onComplete}
+          />
+          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
+        </View><View style={styles.dailyActionRow} >
+          <CheckBox
+            containerStyle={{ flexGrow: 1, marginRight: 0 }}
+            title='+5 Click Here'
+            checked={true}
+            onPress={onComplete}
+          />
+          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
+        </View><View style={styles.dailyActionRow} >
+          <CheckBox
+            containerStyle={{ flexGrow: 1, marginRight: 0 }}
+            title='+5 Click Here'
+            checked={true}
+            onPress={onComplete}
+          />
+          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
+        </View><View style={styles.dailyActionRow} >
+          <CheckBox
+            containerStyle={{ flexGrow: 1, marginRight: 0 }}
+            title='+5 Click Here'
+            checked={true}
+            onPress={onComplete}
+          />
+          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

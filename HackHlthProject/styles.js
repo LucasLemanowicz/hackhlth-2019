@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     welcome: {
         fontSize: 32,
     },
+    dailyActionRow: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     scrollView: {
         backgroundColor: Colors.lighter,
     },
