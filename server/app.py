@@ -53,6 +53,12 @@ class FhirApi:
             'code': l.get('code'),
             'date': l.get('effectiveDateTime'),
             'value': l.get('valueQuantity')},
+        # Steps
+        '55423-8': lambda l: {
+            'code': l.get('code'),
+            'date': l.get('effectiveDateTime'),
+            'patient': l.get('subject', {}).get('reference', ''),
+            'value': l.get('valueQuantity')},
         'default': lambda l: l,
     }
 
@@ -72,8 +78,51 @@ class FhirApi:
         raw_data = [item.as_json() for item in results]
         return [self.loinc_codes.get(loinc, self.loinc_codes['default'])(i) for i in raw_data]
 
+    def get_steps(self, patient_id):
+        loinc = "55423-8"
+        search = obs.Observation.where({ "code": loinc })
+        results = search.perform_resources(self.smart.server)
+        raw_data = [item.as_json() for item in results]
+        all_steps = [self.loinc_codes.get(loinc, self.loinc_codes['default'])(i) for i in raw_data]
+        return [step for step in all_steps if patient_id in step['patient']]
 
-
+    def write_steps(self, patient_id, yyy_MM_dd, step_count):
+        steps_blob = {
+            "resourceType": "Observation",
+            "status": "final",
+            "category": [
+                {
+                "coding": [
+                    {
+                    "system": "https://snomed.info.sct",
+                    "code": "68130003",
+                    "display": "Physical activity (observable entity)"
+                    }
+                ]
+                }
+            ],
+            "code": {
+                "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "55423-8",
+                    "display": "Number of steps in unspecified time Pedometer"
+                }
+                ]
+            },
+            "subject": {
+                "reference": "Patient/" + patient_id
+            },
+            "effectiveDateTime": yyy_MM_dd,
+            "valueQuantity": {
+                "value": step_count,
+                "unit": "steps",
+                "system": "http://unitsofmeasure.org",
+                "code": "{steps}/{tot}"
+            }
+        }
+        steps_obj = obs.Observation(steps_blob).create(self.smart.server)
+        return steps_obj
 
     def patients(self):
         search = p.Patient.where(struct={})
@@ -210,6 +259,14 @@ def patient(patient_id):
 @app.route('/fhir/observation/<loinc>')
 def observation(loinc):
     return jsonify(fhir_api.get_observation(loinc))
+
+@app.route('/fhir/steps/<patient_id>')
+def steps(patient_id):
+    return jsonify(fhir_api.get_steps(patient_id))
+
+@app.route('/fhir/writeback/steps/<string:patient_id>/<string:yyyy_MM_dd>/<int:step_count>')
+def writeback_steps(patient_id, yyyy_MM_dd, step_count):
+    return jsonify(fhir_api.write_steps(patient_id, yyyy_MM_dd, step_count))
 
 @app.route('/sdh/county/<county>')
 def sdh_county(county):
