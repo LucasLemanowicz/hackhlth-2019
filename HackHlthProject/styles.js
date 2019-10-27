@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     todayGoals: {
         paddingTop: 10,
         paddingLeft: 15,
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: "600",
         alignSelf: "center"
     },
