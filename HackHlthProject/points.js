@@ -1,8 +1,8 @@
 const actionPoints = {
-    "biking": 5,
+    "walking": 5,
     "lunch": 3,
     "sleep": 2,
-    "swimming": 5,
+    "parking": 5,
 }
 
 export { actionPoints };

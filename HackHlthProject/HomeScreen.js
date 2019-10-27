@@ -7,12 +7,12 @@ import { updateHomeState } from './reducer';
 import { styles } from "./styles";
 import { actionPoints } from "./points";
 
-const actionKeys = ["biking", "swimming", "lunch", "sleep"];
+const actionKeys = ["walking", "parking", "lunch", "sleep"];
 const actionTexts = {
-    "biking": "20 min of biking",
+    "walking": "30 min walk",
     "lunch": "Eat a healthy lunch",
     "sleep": "Get an extra hour of sleep tonight",
-    "swimming": "20 min of swimming",
+    "parking": "Park car two blocks from work",
 };
 
 class UnconnectedHomeScreen extends React.Component {

@@ -1,8 +1,8 @@
 const INITIAL_STATE = {
     points: 9998,
-    isChecked: { "biking": false, "lunch": false, "sleep": false, "swimming": false },
-    isShown: { "biking": true, "lunch": true, "sleep": true, "swimming": false },
-    selectedAction: ""
+    isChecked: { "walking": false, "lunch": false, "sleep": false, "parking": false },
+    isShown: { "walking": true, "lunch": true, "sleep": true, "parking": false },
+    selectedAction: "walking"
 };
 
 const updateHomeState = partialHomeState => (
