@@ -30,6 +30,16 @@ class MyHealthScreen extends React.Component {
                             <Text style={styles.healthValue}>2</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.healthRow}>
+                            <Text style={styles.healthLabel}>Education</Text>
+                            <Text style={styles.healthValue}>HS Diploma</Text>
+                            <Text style={styles.healthSource1}>(questionaire)</Text>
+                        </View>
+                        <View style={styles.healthRow}>
+                            <Text style={styles.healthLabel}>Zipcode</Text>
+                            <Text style={styles.healthValue}>12345</Text>
+                            <Text style={styles.healthSource1}>(questionaire)</Text>
+                        </View>
                         {!isMyHealthDataChecked && <CheckBox containerStyle={styles.normalizedCheckbox} title='Pull in Health Data' checked={isMyHealthDataChecked}
                             onPress={() => { this.setState({ isMyHealthDataChecked: true }); this.loadHealthData() }} />}
                         {isLoadingHealthData && <ActivityIndicator size="large" />}
