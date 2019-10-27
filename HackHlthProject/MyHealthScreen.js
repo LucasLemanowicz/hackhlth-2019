@@ -28,31 +28,37 @@ class MyHealthScreen extends React.Component {
                             <Text style={styles.healthValue}>Betty Smith</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.separator} />
                         <View style={styles.healthRow}>
                             <Text style={styles.healthLabel}>Sex</Text>
                             <Text style={styles.healthValue}>Female</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.separator} />
                         <View style={styles.healthRow}>
                             <Text style={styles.healthLabel}>Dependents</Text>
                             <Text style={styles.healthValue}>2</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.separator} />
                         <View style={styles.healthRow}>
                             <Text style={styles.healthLabel}>Education</Text>
                             <Text style={styles.healthValue}>HS Diploma</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.separator} />
                         <View style={styles.healthRow}>
                             <Text style={styles.healthLabel}>Zipcode</Text>
                             <Text style={styles.healthValue}>12345</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.separator} />
                         <View style={styles.healthRow}>
                             <Text style={styles.healthLabel}>Employer</Text>
                             <Text style={styles.healthValue}>Walmart Inc</Text>
                             <Text style={styles.healthSource1}>(questionaire)</Text>
                         </View>
+                        <View style={styles.separator} />
                         {!isMyHealthDataChecked && <CheckBox containerStyle={styles.normalizedCheckbox} title='Pull in Health Data' checked={isMyHealthDataChecked}
                             onPress={() => { this.setState({ isMyHealthDataChecked: true }); this.loadHealthData() }} />}
                         {isLoadingHealthData && <ActivityIndicator size="large" />}
@@ -64,36 +70,43 @@ class MyHealthScreen extends React.Component {
                                         <Text style={styles.healthValue}>Oct. 22, 1964</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                     <View style={styles.healthRow}>
                                         <Text style={styles.healthLabel}>Insurance</Text>
                                         <Text style={styles.healthValue}>Anthem PPO</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                     <View style={styles.healthRow}>
                                         <Text style={styles.healthLabel}>Height</Text>
                                         <Text style={styles.healthValue}>5' 4"</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                     <View style={styles.healthRow}>
                                         <Text style={styles.healthLabel}>Weight</Text>
                                         <Text style={styles.healthValue}>180 lbs</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                     <View style={styles.healthRow}>
                                         <Text style={styles.healthLabel}>BMI</Text>
                                         <Text style={styles.healthValue}>31</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                     <View style={styles.healthRow}>
                                         <Text style={styles.healthLabel}>Last Clinic BP</Text>
                                         <Text style={styles.healthValue}>128/82</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                     <View style={styles.healthRow}>
                                         <Text style={styles.healthLabel}>Previous Medical Conditions</Text>
                                         <Text style={styles.healthValue}>Gestational Diabetes</Text>
                                         <Text style={styles.healthSource2}>(FHIR)</Text>
                                     </View>
+                                    <View style={styles.separator} />
                                 </>
                             )
                         }

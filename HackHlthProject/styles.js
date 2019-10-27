@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     healthRow: {
         flex: 1,
         flexDirection: "row",
-        paddingBottom: 5,
+        paddingTop: 5,
     },
     healthLabel: {
         fontSize: 18,
