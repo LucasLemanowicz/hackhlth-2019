@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Text, View, SafeAreaView } from 'react-native';
+import { Button, Divider, CheckBox } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateHomeState } from './reducer';
@@ -25,28 +25,43 @@ const secondaryTexts = {
 }
 
 class UnconnectedDetailsScreen extends React.Component {
+    state = { isCannotDo: false };
     render() {
         const { isChecked, isShown, points, selectedAction, updateHomeState } = this.props;
         return (
-            <View style={styles.detailsScreen}>
-                <Text style={styles.detailsMainText}>{mainTexts[selectedAction]}</Text>
-                <Text style={styles.detailsSecondaryText}>{secondaryTexts[selectedAction]}</Text>
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Button title="Done!" onPress={() => {
-                        updateHomeState({
-                            points: points + actionPoints[selectedAction],
-                            isChecked: { ...isChecked, [selectedAction]: true },
-                        });
-                        this.props.navigation.navigate('HomeScreen');
-                    }} />
-                    <Button title="Cannot Do" onPress={() => {
-                        updateHomeState({
-                            isShown: { ...isShown, [selectedAction]: false, swimming: true },
-                        })
-                        this.props.navigation.navigate('HomeScreen');
-                    }} />
+            <SafeAreaView style={styles.safeAreaViewContainer}>
+                <View style={styles.detailsScreen}>
+                    <Text style={styles.detailsMainText}>{mainTexts[selectedAction]}</Text>
+                    <Text style={styles.detailsSecondaryText}>{secondaryTexts[selectedAction]}</Text>
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                        <Button title="Done!" onPress={() => {
+                            updateHomeState({
+                                points: points + actionPoints[selectedAction],
+                                isChecked: { ...isChecked, [selectedAction]: true },
+                            });
+                            this.props.navigation.navigate('HomeScreen');
+                        }} />
+                        <Button title="Cannot Do" onPress={() => {
+                            this.setState({ isCannotDo: true });
+                        }} />
+                    </View>
+                    {this.state.isCannotDo && (
+                        <View>
+                            <Divider style={{ backgroundColor: 'blue' }} />
+                            <CheckBox title='one' />
+                            <CheckBox title='two' />
+                            <CheckBox title='three' />
+                            <Button title="Cannot Do" onPress={() => {
+                                updateHomeState({
+                                    isShown: { ...isShown, [selectedAction]: false, swimming: true },
+                                })
+                                this.props.navigation.navigate('HomeScreen');
+                            }} />
+
+                        </View>
+                    )}
                 </View>
-            </View>
+            </SafeAreaView>
         );
     }
 }
