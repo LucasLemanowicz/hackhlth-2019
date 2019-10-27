@@ -71,6 +71,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 10,
     },
+    todayGoals: {
+        paddingLeft: 15,
+        fontSize: 16,
+        fontWeight: "600"
+    }
 });
 
 export { styles };

@@ -27,6 +27,7 @@ class UnconnectedHomeScreen extends React.Component {
                         <Text style={styles.welcome}>Hello Betty!</Text>
                         <Text>{points} points</Text>
                     </View>
+                    <Text style={styles.todayGoals}>Today's Goals</Text> 
                     {actionKeys.map(key => isShown[key] && (
                         <CheckBox
                             key={key}
