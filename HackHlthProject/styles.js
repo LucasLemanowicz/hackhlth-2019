@@ -5,23 +5,34 @@ const styles = StyleSheet.create({
     safeAreaViewContainer: {
         flex: 1,
     },
+    iconWrapper: {
+        flex: 1,
+        paddingTop: 10,
+        marginLeft: 5,
+    },
     welcomeWrapper: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 20,
+        paddingTop: 10,
         paddingBottom: 20,
     },
     welcome: {
         fontSize: 32,
+        marginBottom: -25
     },
+    pointsRow: {
+        paddingTop: 10,
+        fontWeight: "600",
+        fontSize: 15
+    }, 
     dailyActionRow: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
     },
     scrollView: {
-        backgroundColor: Colors.lighter,
+        backgroundColor: 'white',
     },
     detailsScreen: {
         flex: 1,
@@ -39,12 +50,19 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     todayGoals: {
+        paddingTop: 10,
         paddingLeft: 15,
         fontSize: 16,
-        fontWeight: "600"
+        fontWeight: "600",
+        alignSelf: "center"
+    },
+    checkedCheckbox: {
+        backgroundColor: "#A7B6C2", 
+        opacity: 0.5
     },
     healthScreen: {
-        padding: 40,
+        paddingHorizontal: 40,
+        paddingVertical: 20
     },
     healthTitle: {
         fontSize: 32,
@@ -83,7 +101,24 @@ const styles = StyleSheet.create({
     normalizedCheckbox: {
         marginLeft: 0,
         marginRight: 0
-    }
+    },
+    linkContainer: {
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 8,
+    },
+    link: {
+        flex: 2,
+        fontSize: 18,
+        fontWeight: '400',
+        color: "blue",
+    },
+    separator: {
+        backgroundColor: "gray",
+        height: 1,
+    },
 });
 
 export { styles };

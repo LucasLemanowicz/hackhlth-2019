@@ -11,30 +11,12 @@ import { homeReducer } from './reducer';
 import { DetailsScreen } from "./DetailsScreen";
 import { MyHealthScreen } from "./MyHealthScreen";
 import { SharingScreen } from "./SharingScreen";
+import { ResourcesScreen } from "./ResourcesScreen";
+import { TrendsScreen } from "./TrendsScreen";
 
 const store = createStore(combineReducers({
   home: homeReducer,
 }));
-
-class TrendsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>This is my Trends Screen</Text>
-      </View>
-    );
-  }
-}
-
-class ResourcesScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>This is my Resources Screen</Text>
-      </View>
-    );
-  }
-}
 
 class RewardsScreen extends React.Component {
   render() {
@@ -52,13 +34,12 @@ const HomeStack = createStackNavigator({
 });
 
 const TabNavigator = createBottomTabNavigator({
-  Sharing: SharingScreen,
   Home: HomeStack,
-  Trends: TrendsScreen,
-  "My Health": MyHealthScreen,
-  Resources: ResourcesScreen,
-  Rewards: RewardsScreen,
-  
+  Trends: createStackNavigator({ TrendsScreen: TrendsScreen }),
+  "My Health": createStackNavigator({ MyHealthScreen: MyHealthScreen }),
+  Rewards: createStackNavigator({ RewardsScreen }),
+  Resources: createStackNavigator({ ResourcesScreen }),
+  Sharing: createStackNavigator({ SharingScreen }),
 });
 
 const AppContainer = createAppContainer(TabNavigator);
@@ -67,7 +48,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <ThemeProvider>
-            <AppContainer />
+          <AppContainer />
         </ThemeProvider>
       </Provider>
     );
