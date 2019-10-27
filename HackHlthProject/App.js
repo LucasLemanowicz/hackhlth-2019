@@ -15,7 +15,6 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-
 import {
   Header,
   LearnMoreLinks,
@@ -23,6 +22,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { Button } from 'react-native-elements';
 
 const App: () => React$Node = () => {
   return (
@@ -33,6 +33,7 @@ const App: () => React$Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Header />
+          <Button title="hello" />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
