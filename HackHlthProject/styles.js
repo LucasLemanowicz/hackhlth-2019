@@ -56,6 +56,21 @@ const styles = StyleSheet.create({
         paddingRight: 12,
         textAlign: 'right',
     },
+    detailsScreen: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20
+    },
+    detailsMainText: {
+        fontSize: 24,
+        padding: 10,
+        backgroundColor: "#FFC940"
+    },
+    detailsSecondaryText: {
+        fontSize: 20,
+        padding: 10,
+    },
 });
 
 export { styles };
