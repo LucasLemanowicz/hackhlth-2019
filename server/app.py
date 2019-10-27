@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 import requests
 
 from bs4 import BeautifulSoup
@@ -23,45 +24,75 @@ class FhirApi:
         patients = search.perform_resources(self.smart.server)
         return [patient.as_json() for patient in patients]
 
-
 class SdhApi:
-    OBESITY_DATA_SOURCE = "https://nccd.cdc.gov/DHDSPAtlas/SocialDeterminantThematicDataHandler.ashx?{%22ThemeId%22:62,%22GeographyType%22:%22county%22,%22ParentGeographyFilter%22:%22%22,%22ThemeFilterOptions%22:[]}"
+    DIABETES_DATA_SOURCE = "https://nccd.cdc.gov/DHDSPAtlas/SocialDeterminantThematicDataHandler.ashx?{%22ThemeId%22:62,%22GeographyType%22:%22county%22,%22ParentGeographyFilter%22:%22%22,%22ThemeFilterOptions%22:[]}"
+    OBESITY_DATA_SOURCE  = "https://nccd.cdc.gov/DHDSPAtlas/SocialDeterminantThematicDataHandler.ashx?{%22ThemeId%22:63,%22GeographyType%22:%22county%22,%22ParentGeographyFilter%22:%22%22,%22ThemeFilterOptions%22:[]}"
+    INACTIVE_DATA_SOURCE = "https://nccd.cdc.gov/DHDSPAtlas/SocialDeterminantThematicDataHandler.ashx?{%22ThemeId%22:64,%22GeographyType%22:%22county%22,%22ParentGeographyFilter%22:%22%22,%22ThemeFilterOptions%22:[]}"
 
     def __init__(self):
-        self.obesity_data = None
+        self.sdh_data = None
 
     def warmup(self):
-        self._get_obesity_data()
+        self._get_sdh_data()
 
     def reset(self):
-        self.obesity_data = None
+        self.sdh_data = None
 
-    def obesity_by_county(self, county):
-        if not self.obesity_data:
-            self._get_obesity_data()
+    def sdh_by_county(self, county):
+        if not self.sdh_data:
+            self._get_sdh_data()
 
-        return list(filter(lambda x: x['County'] == county, self.obesity_data))
+        return list(filter(lambda x: x['County'] == county, self.sdh_data))
 
-    def obesity_by_state(self, state):
-        if not self.obesity_data:
-            self._get_obesity_data()
+    def sdh_by_state(self, state):
+        if not self.sdh_data:
+            self._get_sdh_data()
 
-        return list(filter(lambda x: x['State'] == state, self.obesity_data))
+        return list(filter(lambda x: x['State'] == state, self.sdh_data))
 
-    def _get_obesity_data(self):
-        http = requests.get(self.OBESITY_DATA_SOURCE)
+    def _get_sdh_data(self):
+        # Obesity Data
+        dict_data = self._load_and_convert_table(self.OBESITY_DATA_SOURCE)
+        obesity_data = [{
+            'State': d['State'],
+            'County': d['County'],
+            'Obesity': d['Value'],
+        } for d in dict_data]
+
+        # Diabetes Data
+        dict_data = self._load_and_convert_table(self.DIABETES_DATA_SOURCE)
+        diabetes_data = [{
+            'State': d['State'],
+            'County': d['County'],
+            'Diabetes': d['Value'],
+        } for d in dict_data]
+
+        # Inactive Data
+        dict_data = self._load_and_convert_table(self.INACTIVE_DATA_SOURCE)
+        inactive_data = [{
+            'State': d['State'],
+            'County': d['County'],
+            'Inactive': d['Value'],
+        } for d in dict_data]
+
+        # Convert to single table
+        diabetes = pd.DataFrame(diabetes_data)
+        obesity  = pd.DataFrame(obesity_data)
+        inactive = pd.DataFrame(inactive_data)
+
+        part1 = pd.merge(obesity, diabetes, on=['County', 'State'])
+        part2 = pd.merge(part1, inactive, on=['County', 'State'])
+
+        self.sdh_data = part2.to_dict(orient='records')
+
+    def _load_and_convert_table(self, url):
+        http = requests.get(url)
         soup = BeautifulSoup(http.content, "lxml")
         table_data = [[cell.text for cell in row(["th", "td"])]
                          for row in soup("tr")]
         table_header = table_data[0]
         table_content = table_data[1:]
-        dict_data = [dict(x) for x in list(map(list, [zip(table_header, content) for content in table_content]))]
-        clean_set = [{
-            'State': d['State'],
-            'County': d['County'],
-            'Obesity': d['Value'],
-        } for d in dict_data]
-        self.obesity_data = clean_set
+        return [dict(x) for x in list(map(list, [zip(table_header, content) for content in table_content]))]
 
 
 fhir_api = FhirApi()
@@ -80,13 +111,13 @@ def warmup():
 def patient():
     return jsonify(fhir_api.patients())
 
-@app.route('/sdh/obesity/county/<county>')
-def obesity_county(county):
-    return jsonify(sdh_api.obesity_by_county(county))
+@app.route('/sdh/county/<county>')
+def sdh_county(county):
+    return jsonify(sdh_api.sdh_by_county(county))
 
-@app.route('/sdh/obesity/state/<state>')
-def obesity_state(state):
-    return jsonify(sdh_api.obesity_by_state(state))
+@app.route('/sdh/state/<state>')
+def sdh_state(state):
+    return jsonify(sdh_api.sdh_by_state(state))
 
 if __name__ == '__main__':
     app.run(debug=True,
