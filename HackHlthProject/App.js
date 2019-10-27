@@ -6,96 +6,47 @@
  * @flow
  */
 
-import React, { useCallback, useState } from 'react';
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
-import { Button, CheckBox, Icon } from 'react-native-elements';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { ThemeProvider } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { styles } from "./styles";
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
+import { HomeScreen } from "./HomeScreen";
+import { homeReducer } from './reducer';
+import { DetailsScreen } from "./DetailsScreen";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <AppContainer />
-    );
-  }
-}
+const store = createStore(combineReducers({
+  home: homeReducer,
+}));
 
-function HomeScreen() {
-  const [points, setPoints] = useState(10000);
-  const onComplete = useCallback(() => { setPoints(points + 5); }, [points]);
-
-  return (
-    <SafeAreaView style={styles.safeAreaViewContainer}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <View style={styles.welcomeWrapper}>
-          <Text style={styles.welcome}>Welcome Back Betty!</Text>
-          <Text>{points} points</Text>
-        </View>
-        <View style={styles.dailyActionRow} >
-          <CheckBox
-            containerStyle={{ flexGrow: 1, marginRight: 0 }}
-            title='+5 Click Here'
-            checked={true}
-            onPress={onComplete}
-          />
-          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
-        </View>
-        <View style={styles.dailyActionRow} >
-          <CheckBox
-            containerStyle={{ flexGrow: 1, marginRight: 0 }}
-            title='+5 Click Here'
-            checked={true}
-            onPress={onComplete}
-          />
-          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
-        </View><View style={styles.dailyActionRow} >
-          <CheckBox
-            containerStyle={{ flexGrow: 1, marginRight: 0 }}
-            title='+5 Click Here'
-            checked={true}
-            onPress={onComplete}
-          />
-          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
-        </View><View style={styles.dailyActionRow} >
-          <CheckBox
-            containerStyle={{ flexGrow: 1, marginRight: 0 }}
-            title='+5 Click Here'
-            checked={true}
-            onPress={onComplete}
-          />
-          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
-        </View><View style={styles.dailyActionRow} >
-          <CheckBox
-            containerStyle={{ flexGrow: 1, marginRight: 0 }}
-            title='+5 Click Here'
-            checked={true}
-            onPress={onComplete}
-          />
-          <Button buttonStyle={{ backgroundColor: 'white', marginRight: 10 }} icon={<Icon name="delete" />} />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-class SettingsScreen extends React.Component {
+class TrendsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text> This is my Settings screen </Text>
+        <Text>This is my Trends Screen</Text>
       </View>
     );
   }
 }
 
-class ShareScreen extends React.Component {
+class MyHealthScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text> This is my Share screen </Text>
+        <Text>This is My Health Screen</Text>
+      </View>
+    );
+  }
+}
+
+class ResourcesScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>This is my Resources Screen</Text>
       </View>
     );
   }
@@ -105,18 +56,46 @@ class RewardsScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text> This is my Rewards screen </Text>
+        <Text>This is my Rewards Screen</Text>
       </View>
     );
   }
 }
 
+class SharingScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>This is my Sharing Screen</Text>
+      </View>
+    );
+  }
+}
+
+const HomeStack = createStackNavigator({
+  HomeScreen: HomeScreen,
+  Details: DetailsScreen,
+});
+
 const TabNavigator = createBottomTabNavigator({
-  Home: HomeScreen,
-  Settings: SettingsScreen,
-  Share: ShareScreen,
+  Home: HomeStack,
+  Trends: TrendsScreen,
+  "My Health": MyHealthScreen,
+  Resources: ResourcesScreen,
   Rewards: RewardsScreen,
+  Sharing: SharingScreen,
 });
 
 const AppContainer = createAppContainer(TabNavigator);
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <ThemeProvider>
+          <AppContainer />
+        </ThemeProvider>
+      </Provider>
+    );
+  }
+}
 
