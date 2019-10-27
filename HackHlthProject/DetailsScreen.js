@@ -10,6 +10,7 @@ import { actionTexts } from "./actionTexts";
 
 const mainTexts = {
     "walking": "Exercise is the #1 factor that keeps you healthy. You usually get 10 min per day. Let's up it to 20 min!",
+    "bloodSugar": "Blood sugar is important to monitor",
     "parking": "Adding a few more steps to your walk in to work.",
     "sleep": "Your sleep records show that you got 6 hours sleep the last three nights. Trying going to bed an hour earlier tonight. We'll send you a reminder too, just to make it easier.",
     "lunch": "Healthy Lunch can include: \
@@ -20,6 +21,7 @@ const mainTexts = {
 
 const secondaryTexts = {
     "walking": "Walking is a great way to get your cardio for the day! Why not grab a friend and check out a local trail.",
+    "bloodSugar": "It's important",
     "parking": "The more active you are, the more you reduce your risk of prediabetes.",
     "sleep": "Getting more sleep is an easy way to reduce stress and have more energy in the day.",
     "lunch": "Eating healthy gives your body exactly what it needs so that you can feel good all day while your blood sugar stays in check. The first step is tracking what you eat on a regular basis."
@@ -30,6 +32,7 @@ const tertiaryTexts = {
     "parking": "Physical activity helps you control your weight, uses up glucose as energy and makes your cells more sensitive to insulin.",
     "sleep": "",
     "lunch": "",
+    "bloodSugar": "",
 }
 
 class UnconnectedDetailsScreen extends React.Component {

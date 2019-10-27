@@ -8,7 +8,7 @@ import { styles } from "./styles";
 import { actionPoints } from "./points";
 import { actionTexts } from "./actionTexts";
 
-const actionKeys = ["walking", "parking", "lunch", "sleep"];
+const actionKeys = ["walking", "parking", "lunch", "sleep", "bloodSugar"];
 
 class UnconnectedHomeScreen extends React.Component {
     render() {

@@ -1,7 +1,7 @@
 const INITIAL_STATE = {
     points: 998,
-    isChecked: { "walking": false, "lunch": false, "sleep": false, "parking": false },
-    isShown: { "walking": true, "lunch": true, "sleep": true, "parking": false },
+    isChecked: { "walking": false, "lunch": false, "sleep": false, "parking": false, "bloodSugar": false },
+    isShown: { "walking": true, "lunch": true, "sleep": true, "parking": false, "bloodSugar": true },
     selectedAction: "walking"
 };
 
