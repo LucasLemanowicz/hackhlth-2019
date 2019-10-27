@@ -4,7 +4,7 @@ import { LineChart, BarChart } from 'react-native-chart-kit';
 import { styles } from "./styles";
 
 const stepsData = {
-    labels: ['05', '06', '07', '08', '09', '10'],
+    labels: [ 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
     datasets: [
         {
             data: [2000, 4500, 2800, 1800, 9901, 4300],
