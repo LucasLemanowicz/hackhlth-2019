@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingTop: 10,
         paddingBottom: 10,
-        alignSelf: "center"
+        alignSelf: "center",
+        color: "#0E5A8A"
     },
     detailsSecondaryText: {
         fontSize: 18,

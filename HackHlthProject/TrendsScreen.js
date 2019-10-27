@@ -76,14 +76,13 @@ class TrendsScreen extends React.Component {
                             width={330}
                             height={240}
                             chartConfig={{
-                                // backgroundColor: '#e26a00',
+                                backgroundColor: '#137CBD',
                                 decimalPlaces: 0,
                                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                 style: {
                                     borderRadius: 16
                                 }
                             }}
-                            bezier
                             style={{
                                 borderRadius: 16
                             }}
@@ -96,9 +95,7 @@ class TrendsScreen extends React.Component {
                             width={330}
                             height={240}
                             chartConfig={{
-                                backgroundColor: '#e26a00',
-                                backgroundGradientFrom: '#fb8c00',
-                                backgroundGradientTo: '#ffa726',
+                                // backgroundColor: '#e26a00',
                                 decimalPlaces: 0, 
                                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                                 style: {
