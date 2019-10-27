@@ -22,7 +22,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { Button } from 'react-native-elements';
+import { Button, CheckBox, Icon } from 'react-native-elements';
 
 const App: () => React$Node = () => {
   return (
@@ -32,40 +32,55 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
-          <Button title="hello" />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <CheckBox
+            title='Click Here'
+            checked={true}
+          />
+          <View style={styles.menuRow}>
+            <Icon name="home" />
+            <Button buttonStyle={styles.button} title="My Data" />
+            <Button buttonStyle={styles.button} title="Rewards" />
+            <Button buttonStyle={styles.button} title="Share" />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -110,6 +125,14 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  menuRow: {
+    flex: 3, 
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  button: {
+    borderRadius: 0,
+  }
 });
 
 export default App;
