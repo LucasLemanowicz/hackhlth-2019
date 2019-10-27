@@ -42,12 +42,12 @@ class UnconnectedHomeScreen extends React.Component {
                     ))}
                     <CheckBox
                         key="schedule-blood-test"
-                        title="Schedule a new blood test with Dr. John"
+                        title="Schedule a new blood test with Dr. John (+8)"
                         checked={true}
                     />
                     <CheckBox
                         key="water-glass"
-                        title="Pour yourself a big glass of water and enjoy a healthy start to the day!"
+                        title="Pour yourself a big glass of water and enjoy a healthy start to the day! (+1)"
                         checked={true}
                     />
                 </ScrollView>
