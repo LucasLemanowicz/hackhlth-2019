@@ -5,16 +5,27 @@ const styles = StyleSheet.create({
     safeAreaViewContainer: {
         flex: 1,
     },
+    iconWrapper: {
+        flex: 1,
+        paddingTop: 10,
+        marginLeft: 5,
+    },
     welcomeWrapper: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: 20,
+        paddingTop: 10,
         paddingBottom: 20,
     },
     welcome: {
         fontSize: 32,
+        marginBottom: -25
     },
+    pointsRow: {
+        paddingTop: 10,
+        fontWeight: "600",
+        fontSize: 15
+    }, 
     dailyActionRow: {
         flex: 1,
         flexDirection: 'row',
@@ -39,9 +50,15 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     todayGoals: {
+        paddingTop: 10,
         paddingLeft: 15,
         fontSize: 16,
-        fontWeight: "600"
+        fontWeight: "600",
+        alignSelf: "center"
+    },
+    checkedCheckbox: {
+        backgroundColor: "#A7B6C2", 
+        opacity: 0.5
     },
     healthScreen: {
         paddingHorizontal: 40,
