@@ -32,7 +32,7 @@ class UnconnectedDetailsScreen extends React.Component {
                 <Text style={styles.detailsMainText}>{mainTexts[selectedAction]}</Text>
                 <Text style={styles.detailsSecondaryText}>{secondaryTexts[selectedAction]}</Text>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Button title="Done" onPress={() => {
+                    <Button title="Done!" onPress={() => {
                         updateHomeState({
                             points: points + actionPoints[selectedAction],
                             isChecked: { ...isChecked, [selectedAction]: true },
