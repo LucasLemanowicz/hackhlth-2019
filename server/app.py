@@ -2,6 +2,8 @@ import os
 import pandas as pd
 import requests
 
+import bigdata
+
 from bs4 import BeautifulSoup
 from clientpy4.fhirclient import client
 from clientpy4.fhirclient.models import observation as obs
@@ -11,6 +13,40 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+class MedicareApi:
+    CLAIMS_ENDPOINT = "https://data.cms.gov/views/INLINE/rows.json?accessType=WEBSITE&method=getByIds&asHashes=true&start=0&length=100&meta=true&$order=%3Aid"
+
+    def __init__(self):
+        self.claims_data = None
+
+    def warmup(self):
+        if not self.claims_data:
+            self._get_claims_data()
+
+    def reset(self):
+        self.claims_data = None
+
+    def get_claims(self):
+        if not self.claims_data:
+            self._get_claims_data()
+        return [
+            {
+                'ClaimType': claim.get('203220005'),
+                'AverageSubmittedChargeAmount': self._currency(claim.get('203220011')),
+                'AverageMedicarePaymentAmount': self._currency(claim.get('203220013')),
+            } for claim in self.claims_data['data']
+        ]
+        return self.claims_data
+
+    def _currency(self, currency_as_string):
+        try:
+            return int(float(currency_as_string) * 100) / 100.0
+        except:
+            return 0.0
+
+    def _get_claims_data(self):
+        self.claims_data = requests.post(self.CLAIMS_ENDPOINT, json=bigdata.medicare_claims).json()
 
 
 class FhirApi:
@@ -86,7 +122,7 @@ class FhirApi:
         all_steps = [self.loinc_codes.get(loinc, self.loinc_codes['default'])(i) for i in raw_data]
         return [step for step in all_steps if patient_id in step['patient']]
 
-    def write_steps(self, patient_id, yyy_MM_dd, step_count):
+    def write_steps(self, patient_id, yyyy_MM_dd, step_count):
         steps_blob = {
             "resourceType": "Observation",
             "status": "final",
@@ -113,7 +149,7 @@ class FhirApi:
             "subject": {
                 "reference": "Patient/" + patient_id
             },
-            "effectiveDateTime": yyy_MM_dd,
+            "effectiveDateTime": yyyy_MM_dd,
             "valueQuantity": {
                 "value": step_count,
                 "unit": "steps",
@@ -240,6 +276,7 @@ class SdhApi:
 
 fhir_api = FhirApi('http://test.fhir.org/r4')
 sdh_api = SdhApi()
+medicare_api = MedicareApi()
 
 
 @app.route('/')
@@ -268,6 +305,10 @@ def steps(patient_id):
 def writeback_steps(patient_id, yyyy_MM_dd, step_count):
     return jsonify(fhir_api.write_steps(patient_id, yyyy_MM_dd, step_count))
 
+@app.route('/medicare/claims')
+def medicare_claims():
+    return jsonify(medicare_api.get_claims())
+
 @app.route('/sdh/county/<county>')
 def sdh_county(county):
     filter_fn = lambda x: x['County'] == county
@@ -283,11 +324,13 @@ def sdh_state(state):
 @app.route('/admin/warmup')
 def warmup():
     sdh_api.warmup()
+    medicare_api.warmup()
     return "OK"
 
 @app.route('/admin/reset')
 def reset():
     sdh_api.reset()
+    medicare_api.reset()
     return "OK"
 
 if __name__ == '__main__':
