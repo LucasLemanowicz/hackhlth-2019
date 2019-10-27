@@ -42,17 +42,11 @@ class SdhApi:
     def reset(self):
         self.sdh_data = None
 
-    def sdh_by_county(self, county):
+    def get_sdh(self, filter_fn):
         if not self.sdh_data:
             self._get_sdh_data()
 
-        return list(filter(lambda x: x['County'] == county, self.sdh_data))
-
-    def sdh_by_state(self, state):
-        if not self.sdh_data:
-            self._get_sdh_data()
-
-        return list(filter(lambda x: x['State'] == state, self.sdh_data))
+        return list(filter(filter_fn, self.sdh_data))
 
     def _get_sdh_data(self):
         # Obesity Data
@@ -145,27 +139,35 @@ sdh_api = SdhApi()
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, Nudge!'
 
-@app.route('/warmup')
-def warmup():
-    sdh_api.warmup()
 
-@app.route('/reset')
-def reset():
-    sdh_api.reset()
-
+# API Endpoints
 @app.route('/fhir/patients')
 def patient():
     return jsonify(fhir_api.patients())
 
 @app.route('/sdh/county/<county>')
 def sdh_county(county):
-    return jsonify(sdh_api.sdh_by_county(county))
+    filter_fn = lambda x: x['County'] == county
+    return jsonify(sdh_api.get_sdh(filter_fn))
 
 @app.route('/sdh/state/<state>')
 def sdh_state(state):
-    return jsonify(sdh_api.sdh_by_state(state))
+    filter_fn = lambda x: x['State'] == state
+    return jsonify(sdh_api.get_sdh(filter_fn))
+
+
+# Admin Endpoints
+@app.route('/admin/warmup')
+def warmup():
+    sdh_api.warmup()
+    return "OK"
+
+@app.route('/admin/reset')
+def reset():
+    sdh_api.reset()
+    return "OK"
 
 if __name__ == '__main__':
     app.run(debug=True,
