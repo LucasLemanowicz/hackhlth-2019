@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { ThemeProvider } from 'react-native-elements';
+import { Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { ThemeProvider, Image } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -13,6 +13,7 @@ import { MyHealthScreen } from "./MyHealthScreen";
 import { SharingScreen } from "./SharingScreen";
 import { ResourcesScreen } from "./ResourcesScreen";
 import { TrendsScreen } from "./TrendsScreen";
+import { styles } from "./styles";
 
 const store = createStore(combineReducers({
   home: homeReducer,
@@ -21,9 +22,12 @@ const store = createStore(combineReducers({
 class RewardsScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>This is my Rewards Screen</Text>
-      </View>
+      <SafeAreaView style={styles.safeAreaViewContainer}>
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Image style={{ width: 250, height: 250 }} source={require('./images/nudge-clear.png')} />
+        </View>
+      </SafeAreaView>
+
     );
   }
 }
